@@ -1,0 +1,52 @@
+/* 
+Implementacion de una base de datos en un sistema de informacion
+2026/03/04 4-I
+Job Esaú Torres Jimenez
+Nombre de la practica
+*/
+
+CREATE TABLE departamentos (
+  id int NOT NULL,
+  name varchar(25) NOT NULL,
+  location date NOT NULL,
+  PRIMARY KEY (id, name)
+);
+-- Crear una tabla llamaba "empleados" con las columnas  id, nombre, edad, and salario.
+CREATE TABLE empleados (
+  id int NOT NULL,
+  name varchar(25) NOT NULL,
+ edad int NOT NULL,
+  salario float NOT NULL,
+  puesto varchar(50) NOT NULL,
+  PRIMARY KEY (id, name)
+);
+-- Insertar 5 registros en la tabla "empleados".
+INSERT INTO empleados (id,name,edad,salario,departamento)
+VALUES
+	(1, 'Carlos',67,20000.0,'lider de departamento'),
+	(2, 'Alan',8,280,'striper'),
+	(3, 'Joel',45,150000,'programador'),
+	(7, 'Juan',38,67000,'arquitecto de aplicaciones'),
+	(8, 'Diego',78,200000,'ingeniero'),
+	(4, 'Job',89,200000,'programador'),
+	(10, 'Yael',10,100,'conserje'),
+	(12, 'Antonio',83,70000,'programador'),
+	(6, 'Dwii',76,67676,'prostituto');
+-- Agregar una nueva columna "departamento" a la tabla "empleados".
+ALTER TABLE empleados ADD COLUMN departamento varchar(50) NOT NULL;
+-- Cambiar el tipo de dato de la columna "salario" a Integer.
+ALTER TABLE empleados MODIFY COLUMN salario int(30) NOT NULL;
+-- Eliminar la columna "departamento de la tabla "empleados".
+ALTER TABLE empleados DROP COLUMN departamento varchar(50) NOT NULL;
+-- Eliminar la tabla "departamentos" permanentemente.
+DROP TABLE departamentos;
+-- Eliminar todos los registros de la tabla "empleados" pero mantener la tabla.
+TRUNCATE TABLE empleados  ;
+-- Renombrar la tabla "empleados" a "staff".
+RENAME TABLE empleados to staff ;
+-- Definir 0 como valor predeterminado en la comlumna "salario".
+ALTER TABLE empleados ALTER COLUMN salario default (0);
+-- Crear un nuevo esquema llamado "rh_db".
+CREATE SCHEMA "rh_db";
+-- Mover la tabla "empleados" al esquema "rh_db".
+RENAME TABLE empleados to rh_db.empleados;
